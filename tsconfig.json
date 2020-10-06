@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "jsx": "react",
+    "module": "esnext",
+    "outDir": "./public/",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es5",
+    "paths": {
+      "~modules/*": ["./source/modules/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
