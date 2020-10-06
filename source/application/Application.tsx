@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Landing } from './pages/landing';
+
 export const Application: React.FC = () => {
-  return <h1>react-copypaste</h1>;
+  return <Landing />;
 };

@@ -9,13 +9,25 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/,
+        test: /\.(tsx?)$/,
         use: [
           {
             loader: 'ts-loader'
           }
         ],
         exclude: [/node_modules/]
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        loader: 'file-loader',
+        options: {
+          name() {
+            if (process.env.NODE_ENV === 'production') {
+              return '[contenthash].[ext]';
+            }
+            return '[path][name].[ext]';
+          }
+        }
       }
     ]
   },

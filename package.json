@@ -24,6 +24,7 @@
     "@types/react-router-dom": "^5.1.5",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
+    "file-loader": "^6.1.0",
     "html-webpack-plugin": "^4.5.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

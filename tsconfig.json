@@ -4,6 +4,7 @@
     "baseUrl": ".",
     "jsx": "react",
     "module": "esnext",
+    "moduleResolution": "node",
     "outDir": "./public/",
     "sourceMap": true,
     "strict": true,
