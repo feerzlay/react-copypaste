@@ -2,6 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useResource } from 'react-use-resource';
 
+import Box from '@material-ui/core/Box';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
+
 import { useUsersService } from '~modules/features/users';
 
 export const UsersList: React.FC = () => {
@@ -10,14 +16,18 @@ export const UsersList: React.FC = () => {
 
   return (
     <>
-      <h1>Users</h1>
-      <ol>
+      <Box padding={2}>
+        <Typography component="h1" variant="h4">
+          Users
+        </Typography>
+      </Box>
+      <List>
         {usersResource.read().data.map((user) => (
-          <li key={user.id}>
-            <Link to={`/users/${user.id}`}>{user.email}</Link>
-          </li>
+          <ListItem key={user.id} component={Link} to={`/users/${user.id}`} button>
+            <ListItemText primary={user.email} />
+          </ListItem>
         ))}
-      </ol>
+      </List>
     </>
   );
 };

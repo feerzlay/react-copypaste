@@ -38,7 +38,7 @@ module.exports = {
     }
   },
   plugins: [
-    new webpack.EnvironmentPlugin(['NODE_ENV', 'API_URL', 'SENTRY_DSN']),
+    new webpack.EnvironmentPlugin({ NODE_ENV: 'development', API_URL: '', SENTRY_DSN: '' }),
     new HtmlWebpackPlugin({
       inject: true,
       template: path.resolve(__dirname, '../source/index.ejs'),

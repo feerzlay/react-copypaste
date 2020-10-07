@@ -8,6 +8,7 @@ const Landing = lazy(() => import('./pages/landing').then((m) => ({ default: m.L
 const Users = lazy(() => import('./pages/users').then((m) => ({ default: m.Users })));
 
 import { ApplicationNavigation } from './components/application-navigation';
+import { ApplicationTheme } from './components/application-theme';
 
 export const Application: React.FC = () => {
   return (
@@ -16,13 +17,15 @@ export const Application: React.FC = () => {
         <ResourcesBoundary>
           <Suspense fallback={null}>
             <BrowserRouter>
-              <ApplicationNavigation />
-              <Suspense fallback={null}>
-                <Switch>
-                  <Route path="/" exact component={Landing} />
-                  <Route path="/users" component={Users} />
-                </Switch>
-              </Suspense>
+              <ApplicationTheme>
+                <ApplicationNavigation />
+                <Suspense fallback={null}>
+                  <Switch>
+                    <Route path="/" exact component={Landing} />
+                    <Route path="/users" component={Users} />
+                  </Switch>
+                </Suspense>
+              </ApplicationTheme>
             </BrowserRouter>
           </Suspense>
         </ResourcesBoundary>
