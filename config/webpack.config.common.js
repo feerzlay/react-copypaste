@@ -38,7 +38,7 @@ module.exports = {
     }
   },
   plugins: [
-    new webpack.EnvironmentPlugin(['NODE_ENV']),
+    new webpack.EnvironmentPlugin(['NODE_ENV', 'API_URL']),
     new HtmlWebpackPlugin({
       inject: true,
       template: path.resolve(__dirname, '../source/index.ejs'),
