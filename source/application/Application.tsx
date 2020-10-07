@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { StrictMode, Suspense, lazy } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ResourcesBoundary } from 'react-use-resource';
 
@@ -11,20 +11,22 @@ import { ApplicationNavigation } from './components/application-navigation';
 
 export const Application: React.FC = () => {
   return (
-    <ErrorBoundary>
-      <ResourcesBoundary>
-        <Suspense fallback={null}>
-          <BrowserRouter>
-            <ApplicationNavigation />
-            <Suspense fallback={null}>
-              <Switch>
-                <Route path="/" exact component={Landing} />
-                <Route path="/users" component={Users} />
-              </Switch>
-            </Suspense>
-          </BrowserRouter>
-        </Suspense>
-      </ResourcesBoundary>
-    </ErrorBoundary>
+    <StrictMode>
+      <ErrorBoundary>
+        <ResourcesBoundary>
+          <Suspense fallback={null}>
+            <BrowserRouter>
+              <ApplicationNavigation />
+              <Suspense fallback={null}>
+                <Switch>
+                  <Route path="/" exact component={Landing} />
+                  <Route path="/users" component={Users} />
+                </Switch>
+              </Suspense>
+            </BrowserRouter>
+          </Suspense>
+        </ResourcesBoundary>
+      </ErrorBoundary>
+    </StrictMode>
   );
 };
