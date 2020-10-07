@@ -4,7 +4,10 @@
   "description": "",
   "scripts": {
     "start": "webpack-dev-server --config ./config/webpack.config.dev.js --progress --hot",
-    "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.config.prod.js"
+    "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.config.prod.js",
+    "lint": "yarn lint:eslint",
+    "lint:eslint": "eslint source/**/*.{ts,tsx}",
+    "lint:eslint:fix": "eslint source/**/*.{ts,tsx} --fix"
   },
   "repository": {
     "type": "git",
