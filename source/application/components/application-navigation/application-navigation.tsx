@@ -15,6 +15,9 @@ export const ApplicationNavigation: React.FC = () => {
         <Button component={Link} to="/users" color="inherit">
           Users
         </Button>
+        <Button component={Link} to="/authorization" color="inherit">
+          Sign In
+        </Button>
       </Toolbar>
     </AppBar>
   );

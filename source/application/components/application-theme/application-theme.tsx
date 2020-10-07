@@ -4,6 +4,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
+  props: {
+    MuiTextField: {
+      variant: 'outlined'
+    }
+  },
   overrides: {
     MuiButton: {
       contained: {
@@ -12,6 +17,11 @@ const theme = createMuiTheme({
         '&:hover, &:focus': {
           boxShadow: 'none'
         }
+      }
+    },
+    MuiTextField: {
+      root: {
+        width: '100%'
       }
     }
   }

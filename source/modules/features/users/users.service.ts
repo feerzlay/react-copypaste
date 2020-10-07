@@ -18,9 +18,7 @@ export const useUsersService = () => {
       const controller = new AbortController();
       const signal = controller.signal;
 
-      const promise = request(`${process.env.API_URL}/api/users`, { signal }).then((response) =>
-        response.json()
-      );
+      const promise = request(`${process.env.API_URL}/api/users`, { signal }).then((response) => response.json());
 
       return [promise, controller.abort];
     },
