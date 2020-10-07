@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StatusCodes } from 'http-status-codes';
 
+import { captureException } from '~modules/common/capture-exception';
+
 export class UsersShowErrorBoundary extends Component {
   state: { error: boolean; status: number | null } = {
     error: false,
@@ -11,8 +13,8 @@ export class UsersShowErrorBoundary extends Component {
     return { error: true, status: (error as Response).status || null };
   }
 
-  componentDidCatch() {
-    // TODO: Sentry
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    captureException(error, errorInfo);
   }
 
   render() {

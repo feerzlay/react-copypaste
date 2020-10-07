@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { captureException } from '~modules/common/capture-exception';
+
 export class ErrorBoundary extends Component {
   state = {
     error: false
@@ -9,8 +11,8 @@ export class ErrorBoundary extends Component {
     return { error: true };
   }
 
-  componentDidCatch() {
-    // TODO: Sentry
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    captureException(error, errorInfo);
   }
 
   render() {
