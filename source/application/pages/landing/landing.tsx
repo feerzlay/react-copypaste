@@ -18,7 +18,7 @@ export const Landing: React.FC = () => {
         <Typography component="h1" variant="h4">
           react-copypaste
         </Typography>
-        <img src={IMG_WEBDEV} height="100px" />
+        <img src={IMG_WEBDEV} alt="" height="100px" />
       </Box>
       <Box padding={2}>
         <Button variant="contained" color="primary" onClick={onClick}>

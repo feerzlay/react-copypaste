@@ -18,7 +18,9 @@ if (process.env.SENTRY_DSN) {
 
 if (container) {
   if (container.hasChildNodes()) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const cache = (window as any).__CACHE__;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     delete (window as any).__CACHE__;
 
     ReactDOM.hydrate(
