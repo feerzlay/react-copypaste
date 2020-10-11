@@ -56,6 +56,7 @@ export const AuthorizationSignin: React.FC = () => {
     <Container maxWidth="sm">
       <Box margin={2} padding={2} clone>
         <Paper variant="outlined">
+          {t('errors.required')}
           <form className={styles.signin__form} noValidate autoComplete="off" onSubmit={onSubmit}>
             <input style={{ display: 'none ' }} type="text" name="fakeusername" />
             <input style={{ display: 'none ' }} type="password" name="fakepassword" />

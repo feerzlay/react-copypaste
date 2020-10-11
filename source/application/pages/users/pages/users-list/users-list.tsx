@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { Link } from 'react-router-dom';
 import { useResource } from 'react-use-resource';
+import { Helmet } from 'react-helmet';
 
 import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
@@ -16,6 +18,9 @@ export const UsersList: React.FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>RCP | Users</title>
+      </Helmet>
       <Box padding={2}>
         <Typography component="h1" variant="h4">
           Users

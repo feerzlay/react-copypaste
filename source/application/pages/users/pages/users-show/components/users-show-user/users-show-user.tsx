@@ -1,6 +1,8 @@
 import React from 'react';
 import { IUsersShowUserProps } from './users-show-user.types';
 
+import { Helmet } from 'react-helmet';
+
 import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -12,6 +14,9 @@ export const UsersShowUser: React.FC<IUsersShowUserProps> = ({ userResource }) =
 
   return (
     <>
+      <Helmet>
+        <title>RCP | {user.data.email}</title>
+      </Helmet>
       <Box padding={2}>
         <Typography component="h1" variant="h4">
           {user.data.email}

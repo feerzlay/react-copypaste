@@ -2,17 +2,33 @@ require('dotenv').config();
 
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  entry: path.resolve(__dirname, '../source/index.tsx'),
+  mode: 'production',
+  target: 'node',
+  node: {
+    __dirname: false,
+    __filename: false
+  },
+  entry: path.resolve(__dirname, '../source/index.server.tsx'),
+  devtool: 'source-map',
+  output: {
+    path: path.resolve(__dirname, '../public/server'),
+    filename: 'server.js',
+    publicPath: '/'
+  },
   module: {
     rules: [
       {
         test: /\.(tsx?)$/,
         use: [
           {
-            loader: 'ts-loader'
+            loader: 'ts-loader',
+            options: {
+              configFile: 'tsconfig.server.json'
+            }
           }
         ],
         exclude: [/node_modules/]
@@ -21,6 +37,7 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)$/i,
         loader: 'file-loader',
         options: {
+          emitFile: false,
           name() {
             if (process.env.NODE_ENV === 'production') {
               return '[contenthash].[ext]';
@@ -37,12 +54,15 @@ module.exports = {
       '~modules': path.resolve(__dirname, '../source/modules')
     }
   },
+  externals: [nodeExternals()],
   plugins: [
-    new webpack.EnvironmentPlugin({ NODE_ENV: 'development', API_URL: '', SENTRY_DSN: '' }),
-    new HtmlWebpackPlugin({
-      inject: true,
-      template: path.resolve(__dirname, '../source/index.ejs'),
-      chunksSortMode: 'none'
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1
+    }),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'production',
+      API_URL: '',
+      SENTRY_DSN: ''
     })
   ]
 };

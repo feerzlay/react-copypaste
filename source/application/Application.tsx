@@ -1,8 +1,10 @@
-import React, { StrictMode, Suspense, lazy } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { ResourcesBoundary } from 'react-use-resource';
+import React, { StrictMode, lazy } from 'react';
+
+import { Switch, Route } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 import { ErrorBoundary } from '~modules/ui/error-boundary';
+import { Suspense } from '~modules/ui/suspense';
 
 const Authorization = lazy(() => import('./pages/authorization').then((m) => ({ default: m.Authorization })));
 const Landing = lazy(() => import('./pages/landing').then((m) => ({ default: m.Landing })));
@@ -16,24 +18,23 @@ export const Application: React.FC = () => {
   return (
     <StrictMode>
       <ErrorBoundary>
-        <ResourcesBoundary>
-          <ApplicationI18N>
-            <ApplicationTheme>
+        <ApplicationI18N>
+          <ApplicationTheme>
+            <Suspense fallback={null}>
+              <Helmet>
+                <title>RCP</title>
+              </Helmet>
+              <ApplicationNavigation />
               <Suspense fallback={null}>
-                <BrowserRouter>
-                  <ApplicationNavigation />
-                  <Suspense fallback={null}>
-                    <Switch>
-                      <Route path="/" exact component={Landing} />
-                      <Route path="/authorization" component={Authorization} />
-                      <Route path="/users" component={Users} />
-                    </Switch>
-                  </Suspense>
-                </BrowserRouter>
+                <Switch>
+                  <Route path="/" exact component={Landing} />
+                  <Route path="/authorization" component={Authorization} />
+                  <Route path="/users" component={Users} />
+                </Switch>
               </Suspense>
-            </ApplicationTheme>
-          </ApplicationI18N>
-        </ResourcesBoundary>
+            </Suspense>
+          </ApplicationTheme>
+        </ApplicationI18N>
       </ErrorBoundary>
     </StrictMode>
   );

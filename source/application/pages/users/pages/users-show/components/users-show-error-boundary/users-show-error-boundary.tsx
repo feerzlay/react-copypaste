@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StatusCodes } from 'http-status-codes';
 
 import { captureException } from '~modules/common/capture-exception';
+import { IRequestError } from '~modules/common/use-request';
 
 export class UsersShowErrorBoundary extends Component {
   state: { error: boolean; status: number | null } = {
@@ -9,8 +10,8 @@ export class UsersShowErrorBoundary extends Component {
     status: null
   };
 
-  static getDerivedStateFromError(error: Response | Error) {
-    return { error: true, status: (error as Response).status || null };
+  static getDerivedStateFromError(error: Error | IRequestError) {
+    return { error: true, status: (error as IRequestError).status || null };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
@@ -18,10 +19,8 @@ export class UsersShowErrorBoundary extends Component {
   }
 
   render() {
-    const { error, status } = this.state;
-
-    if (error) {
-      if (status === StatusCodes.NOT_FOUND) {
+    if (this.state.error) {
+      if (this.state.status === StatusCodes.NOT_FOUND) {
         return <h1>404. User not found.</h1>;
       }
       return <h1>Something went wrong.</h1>;

@@ -1,9 +1,9 @@
 import React from 'react';
 
 import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
+import { I18nextProvider } from 'react-i18next';
 
-i18n.use(initReactI18next).init({
+i18n.init({
   resources: {
     en: {
       translation: {
@@ -26,6 +26,5 @@ i18n.use(initReactI18next).init({
 });
 
 export const ApplicationI18N: React.FC = ({ children }) => {
-  // TODO: Add I18nextProvider for SSR support.
-  return <>{children}</>;
+  return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>;
 };
